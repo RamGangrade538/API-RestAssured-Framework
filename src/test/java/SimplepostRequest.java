@@ -3,7 +3,7 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 
-public class postRequest {
+public class SimplepostRequest {
 @Test
 public void postRequest(){
     Response resp  =RestAssured.
