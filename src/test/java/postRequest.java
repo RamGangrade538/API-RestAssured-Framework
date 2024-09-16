@@ -19,14 +19,16 @@ public void postRequest(){
                     "    \"website\": \"www.srilankaaairways.com\",\n" +
                     "    \"established\": \"1990\"\n" +
                     "}")
-            .when()
+
             .post("https://api.instantwebtools.net/v1/airlines")
             .then()
             .assertThat()
             .statusCode(200)
+            .log()
+            .all()
             .extract()
             .response();
-    System.out.println(resp.prettyPrint());
+    //System.out.println(resp.prettyPrint());
 
 }
 }
