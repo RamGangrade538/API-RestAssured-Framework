@@ -4,8 +4,7 @@ import org.testng.annotations.Test;
 import utiles.RestUtil;
 import java.util.HashMap;
 import java.util.Map;
-
-
+import static org.testng.Assert.assertEquals;
 public class PostUsingPayload {
 
     RestUtil util = new RestUtil();
@@ -26,42 +25,49 @@ public class PostUsingPayload {
                 "}";
         System.out.println("Payload: " + payload);
         Response response = util.postData(endPoint, payload, new HashMap<>());
-        Assert.assertEquals(response.statusCode(), 200);
+        assertEquals(response.statusCode(), 200);
 
     }
 
+    //String
     @Test
-    public void create_postRequestString() {
+    public void createPostRequestWithString() {
         RestUtil util = new RestUtil();
         String endPoint = "https://api.instantwebtools.net/v1/airlines";
-        String payload = util.postDataString("252d3bca-d9bb-476c-9a97-562d685e235c", "Sri Lankan Airways",
+        String payload = util.createPayloadString(
+                "252d3bca-d9bb-476c-9a97-562d685e235c",
+                "Sri Lankan Airways",
                 "Sri Lanka",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",  // Logo
                 "From Sri Lanka",
                 "Katunayake, Sri Lanka",
                 "www.srilankaaairways.com",
                 "1990");
-
         Response response = util.postData(endPoint, payload, new HashMap<>());
         System.out.println(response.getBody().asString());
-
+        assertEquals(200, response.getStatusCode());  // Adjust based on expected status code
     }
 
+
+    //Hashmap
     @Test
-    public void create_postRequestHashMap() {
+    public void createPostRequestWithHashMap() {
+
         RestUtil util = new RestUtil();
         String endPoint = "https://api.instantwebtools.net/v1/airlines";
-        Map<String,Object>  payload = util.createpayloadHashmap("252d3bca-d9bb-476c-9a97-562d685e235c", "Sri Lankan Airways",
+        Map<String, Object> payload = util.createPayloadHashMap(
+                "252d3bca-d9bb-476c-9a97-562d685e235c",
+                "Sri Lankan Airways",
                 "Sri Lanka",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",  // Logo
                 "From Sri Lanka",
                 "Katunayake, Sri Lanka",
                 "www.srilankaaairways.com",
                 "1990");
-
-        Response response = util.postData(endPoint, payload<String Object>(), new HashMap<>());
+        Response response = util.postDataHashMap(endPoint, payload, new HashMap<>());
         System.out.println(response.getBody().asString());
-
+        assertEquals(200, response.getStatusCode());
     }
+
 
 }
