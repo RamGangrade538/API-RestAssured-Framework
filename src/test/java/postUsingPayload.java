@@ -1,11 +1,10 @@
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import utiles.RestUtil;
+import Restutiles.RestUtil;
 import java.util.HashMap;
 import java.util.Map;
 import static org.testng.Assert.assertEquals;
-public class PostUsingPayload {
+public class postUsingPayload {
 
     RestUtil util = new RestUtil();
 
