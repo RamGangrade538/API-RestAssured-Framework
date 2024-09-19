@@ -1,3 +1,5 @@
+package simple_data;
+
 import Restutiles.RestUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -12,9 +14,9 @@ public class PostUsing_JsonPayLoad {
 
     @Test
     public void createAirline() throws IOException {
-        Map<String, String> data = JsonUtils.getJsonDataHashmap("airline/qa/Airline.json");
+        Map<String, Object> data = JsonUtils.getJsonDataHashmap("airline/qa/Airline.json");
         System.out.println(data);
-        String endpoint = data.get("uri");
+        String endpoint = (String) data.get("uri");
         Map<String, Object> payload = util.createPayloadHashMap(
                 "252d3bca-d9bb-476c-9a97-562d685e235c",
                 "Sri Lankan Airways",
