@@ -1,20 +1,16 @@
+package Test;
+
+import AirlineApi.AirLineApi;
 import Restutiles.RestUtil;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
-public class Test_class {
-
-    public class SetupJSONFileToStoreReadAPIForMultipleEnv {
+public class CreateAirline_Test_class extends AirLineApi {
         RestUtil util = new RestUtil();
-
         @Test
-        public void createAirline() throws IOException {
-
-            String endpoint = data.get("uri");
+        public void createAirlineTest() throws IOException {
             Map<String, Object> payload = util.createPayloadHashMap(
                     "252d3bca-d9bb-476c-9a97-562d685e235c",
                     "Sri Lankan Airways",
@@ -25,8 +21,7 @@ public class Test_class {
                     "www.srilankaaairways.com",
                     "1990"
             );
-            Response response = util.postDataHashMap(endpoint, payload, new HashMap<>());
+            Response response = createAirline(payload);
             System.out.println(response.getBody().asString());
         }
     }
-}
