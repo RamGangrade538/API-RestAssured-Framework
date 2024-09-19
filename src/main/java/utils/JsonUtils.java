@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class JsonUtils {
     private static ObjectMapper ObjectMapper = new ObjectMapper();
-    public static Map<String ,String > getJsonDataHashmap(String jsonfile) throws IOException {
+    public static Map<String ,Object > getJsonDataHashmap(String jsonfile) throws IOException {
     String pathofJsonfile = System.getProperty("user.dir") + "/src/test/resources/" + jsonfile;
-        Map<String ,String > data= (Map<String, String>) ObjectMapper.readValue(new File(pathofJsonfile), new TypeReference<Object>() {});
+        Map<String ,Object > data= (Map<String, Object>) ObjectMapper.readValue(new File(pathofJsonfile), new TypeReference<Object>() {});
 
         return data ;
     }
