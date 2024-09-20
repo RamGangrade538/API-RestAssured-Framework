@@ -1,6 +1,8 @@
 package reporting;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -9,20 +11,34 @@ import java.time.format.DateTimeFormatter;
 
 public class ExtentReportmanager {
     public static  ExtentReports extentReports;
-    public static ExtentReports createInstance(String filename , String DocumentTitle, String testExecution){
+    public static ExtentReports createInstance(String filename , String DocumentTitle, String testExecution) {
         ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(filename);
         extentSparkReporter.config().setDocumentTitle(DocumentTitle);
         extentSparkReporter.config().setTheme(Theme.STANDARD);
         extentSparkReporter.config().setEncoding("utf-8");
-         extentReports = new ExtentReports();
+        extentSparkReporter.config().setReportName("Test Execution: " + testExecution);
+        extentReports = new ExtentReports();
         extentReports.attachReporter(extentSparkReporter);
-        return extentReports ;
+        return extentReports;
     }
+
     public static String getReportnameWithTimeStamp(){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
         LocalDateTime localDateTime = LocalDateTime.now();
         String FormatedTime = dateTimeFormatter.format(localDateTime);
-        String reportName = "Test" + FormatedTime + ".html";
+        String reportName = "TestRun_" + FormatedTime + ".html";
         return reportName ;
+    }
+    public static void logPassdetails(String log){
+       Setup.extentTest.get().pass(MarkupHelper.createLabel(log , ExtentColor.GREEN));
+    }
+    public static void logFaildetails(String log){
+        Setup.extentTest.get().fail(MarkupHelper.createLabel(log , ExtentColor.RED));
+    }
+    public static void logInfodetails(String log){
+        Setup.extentTest.get().info(MarkupHelper.createLabel(log , ExtentColor.GREY));
+    }
+    public static void logWarningdetails(String log){
+        Setup.extentTest.get().warning(MarkupHelper.createLabel(log , ExtentColor.YELLOW));
     }
 }
