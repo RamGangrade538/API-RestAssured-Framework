@@ -22,6 +22,6 @@ public class CreateAirline_Test_class extends AirLineApi {
                     "1990"
             );
             Response response = createAirline(payload);
-            System.out.println(response.getBody().asString());
+            //System.out.println(response.getBody().asString());
         }
     }
