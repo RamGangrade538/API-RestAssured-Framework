@@ -1,5 +1,3 @@
-package simple_data;
-
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import Restutiles.RestUtil;
@@ -48,9 +46,12 @@ public class postUsingPayload {
         System.out.println(response.getBody().asString());
         assertEquals(200, response.getStatusCode());  // Adjust based on expected status code
     }
+
+
     //Hashmap
     @Test
     public void createPostRequestWithHashMap() {
+
         RestUtil util = new RestUtil();
         String endPoint = "https://api.instantwebtools.net/v1/airlines";
         Map<String, Object> payload = util.createPayloadHashMap(
@@ -66,4 +67,6 @@ public class postUsingPayload {
         System.out.println(response.getBody().asString());
         assertEquals(200, response.getStatusCode());
     }
+
+
 }
