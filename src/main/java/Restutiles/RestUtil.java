@@ -1,6 +1,7 @@
 package Restutiles;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.QueryableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
@@ -24,9 +25,6 @@ public class RestUtil {
 //                .all()
 //                .extract()
 //                .response();
-//
-//
-//
 //    }
     public String createPayloadString(String id, String name, String country, String logo,
                                       String slogan, String headQuarters, String website, String established) {
@@ -41,8 +39,6 @@ public class RestUtil {
                 "  \"established\": \"" + established + "\"\n" +
                 "}";
     }
-
-
     public Map<String, Object> createPayloadHashMap(String id, String name, String country, String logo,
                                                     String slogan, String headQuarters, String website, String established) {
         Map<String, Object> map = new HashMap<>();
@@ -54,17 +50,13 @@ public class RestUtil {
         map.put("head_quarters", headQuarters);
         map.put("website", website);
         map.put("established", established);  // Make sure the format is correct
-
         return map;
     }
-
     public Response postDataHashMap(String endPoint, Map<String, Object> payload, Map<String, String> headers) {
         RequestSpecification requestSpecification = getRequestSpecification(endPoint, payload, headers);
         Response response =requestSpecification.post();
         printRequestLoginReport(requestSpecification);
         printResponseLoginReport(response);
-
-
         return response;
     }
     public Response postData(String endPoint, String payload, Map<String, String> headers) {
@@ -74,39 +66,33 @@ public class RestUtil {
         printResponseLoginReport(response);
         return response;
     }
-
-
     public static RequestSpecification getRequestSpecification(String endPoint , Object payload, Map<String ,String> headers)
     {return RestAssured.given()
             .baseUri(endPoint)
             .headers(headers)
             .contentType(ContentType.JSON)
             .body(payload);
-
     }
     public static void printRequestLoginReport(RequestSpecification requestSpecification){
         QueryableRequestSpecification queryableRequestSpecification = SpecificationQuerier.query(requestSpecification);
         ExtentReportmanager.logInfodetails(queryableRequestSpecification.getBaseUri());
         ExtentReportmanager.logInfodetails("Base URI: " + queryableRequestSpecification.getBaseUri());
-        // Log headers
-        ExtentReportmanager.logInfodetails("Headers: " + queryableRequestSpecification.getHeaders().asList().toString());
-        // Log request method (e.g., POST, GET)
+        ExtentReportmanager.logInfodetails("Request Headers Is: ");
+        ExtentReportmanager.logHeader(queryableRequestSpecification.getHeaders().asList());
         ExtentReportmanager.logInfodetails("Request Method: " + queryableRequestSpecification.getMethod());
-        // Log request body
-        ExtentReportmanager.logInfodetails("Request Body: " + queryableRequestSpecification.getBody());
-        // Log request content type
+        ExtentReportmanager.logInfodetails("Request body is  ");
+        ExtentReportmanager.logJson(queryableRequestSpecification.getBody());
         ExtentReportmanager.logInfodetails("Content Type: " + queryableRequestSpecification.getContentType());
-        // Log request URI (full URI including the endpoint)
         ExtentReportmanager.logInfodetails("Request URI: " + queryableRequestSpecification.getURI());
     }
-
     public static void printResponseLoginReport(Response response){
         ExtentReportmanager.logInfodetails("Status code : " + response.getStatusCode());
-        // Log request body
-        ExtentReportmanager.logInfodetails("Request Body: " + response.getBody() );
-        // Log request Header
+
         ExtentReportmanager.logInfodetails("Content Type: " + response.headers().asList().toString());
+        ExtentReportmanager.logInfodetails("Response Headers Is: ");
+        ExtentReportmanager.logHeader(response.getHeaders().asList());
+        ExtentReportmanager.logInfodetails("Response  body is  ");
+        ExtentReportmanager.logJson(response.getBody().prettyPrint());
+
     }
-
-
 }

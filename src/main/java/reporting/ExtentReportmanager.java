@@ -1,13 +1,15 @@
 package reporting;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-
+import org.apache.http.Header;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ExtentReportmanager {
     public static  ExtentReports extentReports;
@@ -40,5 +42,15 @@ public class ExtentReportmanager {
     }
     public static void logWarningdetails(String log){
         Setup.extentTest.get().warning(MarkupHelper.createLabel(log , ExtentColor.YELLOW));
+    }
+    public static void logJson(String json){
+        Setup.extentTest.get().info(MarkupHelper.createCodeBlock(json , CodeLanguage.JSON));
+    }
+    // for printing hreader
+    public static void logHeader(List<io.restassured.http.Header>  headerList){
+        String [] [] arrayHeader = headerList.stream()
+                                    .map( header -> new String[]{ header.getName(),header.getValue()})
+                                    .toArray(String [] [] :: new );
+        Setup.extentTest.get().info(MarkupHelper.createTable(arrayHeader));
     }
 }
