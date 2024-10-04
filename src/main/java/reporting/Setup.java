@@ -46,7 +46,23 @@ public class Setup implements ITestListener {
     extentTest.set(test);
     }
     public void onTestFailure(ITestResult result) {
-        ExtentReportmanager.logFaildetails(result.getThrowable().getMessage());
+//        if (Setup.extentTest.get() != null) {
+//        ExtentReportmanager.logFaildetails(result.getThrowable().getMessage());
+//        } else {
+//            System.out.println("Failed to log failure because ExtentTest object is null.");
+//        }
+        // Ensure that we retrieve the current ExtentTest instance
+        ExtentTest test = extentTest.get();
+        if (test != null) {
+            test.fail("Test Failed: " + result.getName());
+            Throwable throwable = result.getThrowable();
+            test.fail("Error Message: " + throwable.getMessage());
+
+            // Log the full stack trace
+            for (StackTraceElement element : throwable.getStackTrace()) {
+                test.fail(element.toString());
+            }
+        }
     }
 
 

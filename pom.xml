@@ -47,12 +47,13 @@
           <artifactId>extentreports</artifactId>
           <version>5.1.2</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+      <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
       <dependency>
-          <groupId>com.github.javafaker</groupId>
-          <artifactId>javafaker</artifactId>
-          <version>1.0.2</version>
+          <groupId>net.datafaker</groupId>
+          <artifactId>datafaker</artifactId>
+          <version>2.4.0</version>
       </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
           <groupId>org.projectlombok</groupId>
@@ -88,6 +89,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M7</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
