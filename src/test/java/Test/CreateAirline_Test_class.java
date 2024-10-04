@@ -11,16 +11,7 @@ public class CreateAirline_Test_class extends AirLineApi {
         RestUtil util = new RestUtil();
         @Test
         public void createAirlineTest() throws IOException {
-            Map<String, Object> payload = util.createPayloadHashMap(
-                    "252d3bca-d9bb-476c-9a97-",
-                    "Sri Lankan Airways",
-                    "Sri Lanka",
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png", // Logo
-                    "From Sri Lanka",
-                    "Katunayake, Sri Lanka",
-                    "www.srilankaaairways.com",
-                    "1990"
-            );
+            Map<String, Object> payload = util.createPayloadHashMap();
             Response response = createAirline(payload);
         }
     }
