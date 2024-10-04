@@ -13,69 +13,77 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <restassuredversion>5.4.0</restassuredversion>
+      <testng.version>7.9.0</testng.version>
+      <jackson.databind.version>2.17.2</jackson.databind.version>
+      <gson.version>2.11.0</gson.version>
+      <extentreports.version>5.1.2</extentreports.version>
+      <datafaker.version>2.4.0</datafaker.version>
+      <lombok.version>1.18.34</lombok.version>
+      <commons-lang3.version>3.17.0</commons-lang3.version>
+      <jna.version>5.12.1</jna.version>
+      <logback.version>1.4.12</logback.version>
   </properties>
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.9.0</version>
-<!--      <scope>test</scope>-->
-    </dependency>
     <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <version>${restassuredversion}</version>
-
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.17.2</version>
-    </dependency>
-      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+      <!-- TestNG -->
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>${testng.version}</version>
+      </dependency>
+      <!-- Jackson Databind -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>${jackson.databind.version}</version>
+      </dependency>
+      <!-- Gson -->
       <dependency>
           <groupId>com.google.code.gson</groupId>
           <artifactId>gson</artifactId>
-          <version>2.11.0</version>
+          <version>${gson.version}</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+      <!-- ExtentReports -->
       <dependency>
           <groupId>com.aventstack</groupId>
           <artifactId>extentreports</artifactId>
-          <version>5.1.2</version>
+          <version>${extentreports.version}</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+      <!-- DataFaker -->
       <dependency>
           <groupId>net.datafaker</groupId>
           <artifactId>datafaker</artifactId>
-          <version>2.4.0</version>
+          <version>${datafaker.version}</version>
       </dependency>
-
-      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <!-- Lombok -->
       <dependency>
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
-          <version>1.18.34</version>
+          <version>${lombok.version}</version>
           <scope>provided</scope>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+      <!-- Commons Lang3 -->
       <dependency>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
-          <version>3.17.0</version>
+          <version>${commons-lang3.version}</version>
       </dependency>
+      <!-- JNA -->
       <dependency>
           <groupId>net.java.dev.jna</groupId>
           <artifactId>jna</artifactId>
-          <version>5.12.1</version>
+          <version>${jna.version}</version>
       </dependency>
+      <!-- Logback Classic -->
       <dependency>
           <groupId>ch.qos.logback</groupId>
           <artifactId>logback-classic</artifactId>
-          <version>1.4.12</version>
+          <version>${logback.version}</version>
       </dependency>
   </dependencies>
     <build>
